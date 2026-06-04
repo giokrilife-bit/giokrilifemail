@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GiOKri Life - Consulenza Strategica & Protezione</title>
-    <!-- FontAwesome per le icone -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>GiOKri Life - Le 5 Aree di Expertise</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,12 +11,15 @@
     
     <style>
         :root {
-            --primary: #0b2545;
-            --secondary: #134074;
-            --accent: #00b4d8;
-            --bg-light: #f4f7fa;
-            --white: #ffffff;
-            --text-dark: #1d2d44;
+            --primary-dark: #1d3557;
+            --blue-card: #3a86f0;
+            --orange-card: #ffb703;
+            --green-card: #06d6a0;
+            --purple-card: #7209b7;
+            --red-card: #ef476f;
+            --bg-main: #f8fafd;
+            --text-muted: #6c757d;
+            --text-sub: #8ecae6;
         }
 
         * {
@@ -29,304 +30,214 @@
         }
 
         body {
-            background-color: var(--bg-light);
-            color: var(--text-dark);
-            line-height: 1.6;
-        }
-
-        /* Header */
-        header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: var(--white);
-            text-align: center;
-            padding: 5rem 2rem 6rem 2rem;
-            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-        }
-
-        header h1 {
-            font-size: 3.2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            letter-spacing: 1px;
-        }
-
-        header p.subtitle {
-            font-size: 1.25rem;
-            font-weight: 300;
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto 1.5rem auto;
-        }
-
-        .core-pillars {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            margin-top: 1.5rem;
-        }
-
-        .pillar-badge {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 0.4rem 1.2rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            backdrop-filter: blur(5px);
-        }
-
-        /* Main Container */
-        .container {
-            max-width: 1100px;
-            margin: -3rem auto 4rem auto;
-            padding: 0 1.5rem;
-        }
-
-        /* Intro Text */
-        .intro-box {
-            background: var(--white);
-            border-radius: 12px;
-            padding: 2rem;
-            text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.03);
-            margin-bottom: 3rem;
-        }
-
-        .intro-box p {
-            font-size: 1.1rem;
-            color: var(--secondary);
-            font-weight: 500;
-        }
-
-        /* Griglia dei Servizi Hub */
-        .hub-grid {
+            background-color: var(--bg-main);
+            color: var(--primary-dark);
+            padding: 4rem 2rem;
             display: flex;
             flex-direction: column;
+            align-items: center;
+        }
+
+        h1.main-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 3.5rem;
+            text-align: center;
+            color: #1a2a3a;
+        }
+
+        /* Griglia principale a 3 colonne */
+        .grid-container {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
         }
 
-        /* Card Orizzontali */
-        .hub-card {
-            background: var(--white);
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-            padding: 2.5rem;
+        /* Card Base */
+        .card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
             display: flex;
-            align-items: center;
-            gap: 2.5rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-left: 6px solid transparent;
+            flex-direction: column;
+            position: relative;
+            border-top: 4px solid transparent;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .hub-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
         }
 
-        .card-pmi { border-left-color: var(--accent); }
-        .card-famiglia { border-left-color: #2a9d8f; }
-        .card-immobili { border-left-color: #e9c46a; }
+        /* Colori dei bordi delle singole card come da foto */
+        .c-1 { border-top-color: var(--blue-card); }
+        .c-2 { border-top-color: var(--orange-card); }
+        .c-3 { border-top-color: var(--green-card); }
+        .c-4 { border-top-color: var(--purple-card); }
+        .c-5 { border-top-color: var(--red-card); }
 
-        .hub-icon {
-            font-size: 3rem;
-            width: 90px;
-            height: 90px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
+        /* Numerazione e Titoli */
+        .card h2 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
         }
 
-        .card-pmi .hub-icon { background: rgba(0, 180, 216, 0.1); color: var(--accent); }
-        .card-famiglia .hub-icon { background: rgba(42, 157, 143, 0.1); color: #2a9d8f; }
-        .card-immobili .hub-icon { background: rgba(233, 196, 106, 0.1); color: #d4a316; }
+        .c-1 h2 { color: var(--blue-card); }
+        .c-2 h2 { color: var(--orange-card); }
+        .c-3 h2 { color: var(--green-card); }
+        .c-4 h2 { color: var(--purple-card); }
+        .c-5 h2 { color: var(--red-card); }
 
-        .hub-info {
-            flex-grow: 1;
-        }
-
-        .hub-info h2 {
-            font-size: 1.6rem;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .hub-info p {
-            color: #64748b;
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-            max-width: 650px;
-        }
-
-        .hub-tags {
-            display: flex;
-            gap: 0.8rem;
-            flex-wrap: wrap;
-        }
-
-        .hub-tags span {
+        .subtitle {
             font-size: 0.8rem;
-            background: var(--bg-light);
-            padding: 0.2rem 0.6rem;
-            border-radius: 4px;
-            color: var(--secondary);
-            font-weight: 500;
-        }
-
-        /* Bottoni */
-        .btn-hub {
-            display: inline-block;
-            padding: 0.8rem 1.8rem;
-            border-radius: 8px;
-            text-decoration: none;
             font-weight: 600;
-            font-size: 0.9rem;
-            white-space: nowrap;
-            transition: all 0.2s;
-            text-align: center;
-        }
-
-        .card-pmi .btn-hub { background: var(--accent); color: var(--primary); }
-        .card-famiglia .btn-hub { background: #2a9d8f; color: var(--white); }
-        .card-immobili .btn-hub { background: #e9c46a; color: var(--primary); }
-
-        .btn-hub:hover {
-            opacity: 0.9;
-            transform: scale(1.02);
-        }
-
-        /* Footer e Contatti Generali */
-        .footer-hub {
-            background: var(--primary);
-            color: var(--white);
-            border-radius: 16px;
-            padding: 3rem 2rem;
-            text-align: center;
-            margin-top: 4rem;
-            box-shadow: 0 10px 30px rgba(11, 37, 69, 0.15);
-        }
-
-        .footer-hub h3 {
-            font-size: 1.6rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #a0aec0;
             margin-bottom: 1.5rem;
         }
 
-        .contacts-flex {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
+        .description {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
         }
 
-        .contacts-flex a {
-            color: var(--white);
-            text-decoration: none;
-            font-size: 1rem;
-            transition: color 0.2s;
-        }
-
-        .contacts-flex a:hover { color: var(--accent); }
-        .contacts-flex i { color: var(--accent); margin-right: 8px; }
-
-        .footer-hub p.signature {
+        /* Pulsante Link Integrato nelle Card */
+        .card-link {
+            display: inline-block;
+            text-align: center;
+            padding: 0.6rem 1rem;
+            border-radius: 12px;
             font-size: 0.85rem;
-            opacity: 0.6;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 1.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            margin-top: auto;
         }
 
-        /* Responsive */
-        @media (max-width: 868px) {
-            header h1 { font-size: 2.4rem; }
-            .hub-card { flex-direction: column; text-align: center; padding: 2rem; gap: 1.5rem; }
-            .hub-tags { justify-content: center; }
-            .btn-hub { width: 100%; }
-            .contacts-flex { flex-direction: column; gap: 1rem; }
+        .c-2 .card-link { background: rgba(255, 183, 3, 0.1); color: #d49200; }
+        .c-2 .card-link:hover { background: var(--orange-card); color: #fff; }
+
+        .c-3 .card-link { background: rgba(6, 214, 160, 0.1); color: #049f76; }
+        .c-3 .card-link:hover { background: var(--green-card); color: #fff; }
+
+        .c-5 .card-link { background: rgba(239, 71, 111, 0.1); color: #d6284f; }
+        .c-5 .card-link:hover { background: var(--red-card); color: #fff; }
+
+
+        /* Card Finale: Pronto a Iniziare */
+        .card-cta {
+            background: #1e3a8a;
+            border-radius: 24px;
+            padding: 2.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #ffffff;
+            box-shadow: 0 10px 30px rgba(30, 58, 138, 0.2);
+        }
+
+        .card-cta h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-cta p {
+            font-size: 0.9rem;
+            opacity: 0.85;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-contact {
+            background: #ffffff;
+            color: #1e3a8a;
+            padding: 0.7rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        .btn-contact:hover {
+            transform: scale(1.05);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 650px) {
+            body { padding: 2rem 1rem; }
+            h1.main-title { font-size: 1.8rem; margin-bottom: 2.5rem; }
+            .grid-container { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>GiOKri Life</h1>
-        <p class="subtitle">Consulenza Strategica integrata per l'Impresa, la Famiglia e il Patrimonio.</p>
-        <div class="core-pillars">
-            <div class="pillar-badge">Welfare</div>
-            <div class="pillar-badge">Protezione</div>
-            <div class="pillar-badge">Energia</div>
-            <div class="pillar-badge">Immobili</div>
-        </div>
-    </header>
+    <h1 class="main-title">Le 5 Aree di Expertise</h1>
 
-    <div class="container">
-        
-        <div class="intro-box">
-            <p>Proteggere significa guardare il quadro generale. Scegli l'area di tuo interesse per scoprire le nostre soluzioni dedicate.</p>
+    <div class="grid-container">
+
+        <!-- 01. STRATEGIA E MARKETING -->
+        <div class="card c-1">
+            <h2>01. Strategia e Marketing</h2>
+            <div class="subtitle">Per imprese e professionisti</div>
+            <div class="description">Sviluppiamo la tua presenza sul mercato con strategie efficaci, posizionamento chiaro e strumenti di marketing su misura per il tuo settore.</div>
         </div>
 
-        <div class="hub-grid">
-            
-            <!-- AREA 1: PMI E IMPRESA -->
-            <div class="hub-card card-pmi">
-                <div class="hub-icon"><i class="fa-solid fa-chart-line-up"></i></div>
-                <div class="hub-info">
-                    <h2>Mondo PMI & Aziende</h2>
-                    <p>Ottimizzazione dei costi assicurativi, gestione dei rischi aziendali e implementazione di piani di Welfare aziendale per aumentare la produttività e sbloccare vantaggi fiscali.</p>
-                    <div class="hub-tags">
-                        <span>Ottimizzazione Costi</span>
-                        <span>Welfare Aziendale</span>
-                        <span>Key Man</span>
-                        <span>Cyber Risk</span>
-                    </div>
-                </div>
-                <a href="https://giokrilife-bit.github.io/impresa/" class="btn-hub">Scopri Soluzioni Aziende</a>
-            </div>
-
-            <!-- AREA 2: FAMIGLIA -->
-            <div class="hub-card card-famiglia">
-                <div class="hub-icon"><i class="fa-solid fa-house-user"></i></div>
-                <div class="hub-info">
-                    <h2>Serenità Familiare</h2>
-                    <p>Soluzioni dedicate alla tutela del reddito familiare, alla protezione della salute e alla pianificazione del futuro per garantire stabilità e sicurezza ai tuoi cari nel tempo.</p>
-                    <div class="hub-tags">
-                        <span>Protezione Reddito</span>
-                        <span>Tutela Salute</span>
-                        <span>Previdenza</span>
-                        <span>Piani Futuro</span>
-                    </div>
-                </div>
-                <a href="https://giokrilife-bit.github.io/protezione-famiglia/" class="btn-hub">Scopri Area Famiglia</a>
-            </div>
-
-            <!-- AREA 3: IMMOBILIARE -->
-            <div class="hub-card card-immobili">
-                <div class="hub-icon"><i class="fa-solid fa-building-shield"></i></div>
-                <div class="hub-info">
-                    <h2>Gestione Immobiliare & Contesto</h2>
-                    <p>Consulenza e soluzioni per valorizzare, proteggere e ottimizzare la gestione del patrimonio immobiliare aziendale e privato, migliorando il benessere del contesto.</p>
-                    <div class="hub-tags">
-                        <span>Tutela Patrimonio</span>
-                        <span>Ottimizzazione Energia</span>
-                        <span>Sicurezza Stabili</span>
-                    </div>
-                </div>
-                <a href="https://giokrilife-bit.github.io/benesserecontesto/" class="btn-hub">Scopri Area Immobili</a>
-            </div>
-
+        <!-- 02. PROTEZIONE E ASSICURAZIONI (Link Impresa) -->
+        <div class="card c-2">
+            <h2>02. Protezione e Assicurazioni</h2>
+            <div class="subtitle">Per persone e attività</div>
+            <div class="description">Analizziamo i tuoi rischi reali e costruiamo una copertura assicurativa che protegge ciò che conta davvero, senza sprechi.</div>
+            <a href="https://giokrilife-bit.github.io/impresa/" class="card-link">Esplora Soluzioni Impresa →</a>
         </div>
 
-        <!-- FOOTER HUB -->
-        <div class="footer-hub">
-            <h3>Richiedi una consulenza personalizzata</h3>
-            <div class="contacts-flex">
-                <a href="tel:+393271160053"><i class="fa-solid fa-phone"></i> +39 327 1160053</a>
-                <a href="mailto:giokrilife@gmail.com"><i class="fa-solid fa-envelope"></i> giokrilife@gmail.com</a>
-                <a href="https://maps.google.com/?q=Giokri+Life+Spresiano" target="_blank"><i class="fa-solid fa-location-dot"></i> Spresiano (TV)</a>
-            </div>
-            <p class="signature">&copy; 2026 GiOKri Life • Consulenza Strategica Generale</p>
+        <!-- 03. WELFARE E BENESSERE (Link Famiglia) -->
+        <div class="card c-3">
+            <h2>03. Welfare e Benessere</h2>
+            <div class="subtitle">Per dipendenti e famiglie</div>
+            <div class="description">Soluzioni di welfare aziendale che migliorano la qualità della vita quotidiana e valorizzano le persone nelle organizzazioni.</div>
+            <a href="https://giokrilife-bit.github.io/protezione-famiglia/" class="card-link">Esplora Area Famiglia →</a>
+        </div>
+
+        <!-- 04. ENERGIA ED EFFICIENZA -->
+        <div class="card c-4">
+            <h2>04. Energia ed Efficienza</h2>
+            <div class="subtitle">Per ridurre sprechi e costi</div>
+            <div class="description">Ottimizziamo i consumi energetici, identificando le soluzioni più convenienti per ridurre le spese in bolletta.</div>
+        </div>
+
+        <!-- 05. COMUNITÀ E CONDOMINI (Link Immobili) -->
+        <div class="card c-5">
+            <h2>05. Comunità e Condomini</h2>
+            <div class="subtitle">Per i contesti abitativi</div>
+            <div class="description">Supportiamo la gestione e la valorizzazione degli immobili promuovendo una migliore qualità della vita condivisa.</div>
+            <a href="https://giokrilife-bit.github.io/benesserecontesto/" class="card-link">Esplora Gestione Immobili →</a>
+        </div>
+
+        <!-- CARD FINALE: PRONTO A INIZIARE -->
+        <div class="card-cta">
+            <h3>Pronto a iniziare?</h3>
+            <p>Valutiamo insieme come supportarti.</p>
+            <a href="mailto:giokrilife@gmail.com?subject=Contatto%20da%20Hub%20Expertise" class="btn-contact">Contattaci</a>
         </div>
 
     </div>
