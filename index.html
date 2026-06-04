@@ -275,6 +275,8 @@
             flex-direction: column;
             border-top: 4px solid transparent;
             transition: transform 0.2s, box-shadow 0.2s;
+            min-height: 380px; /* Altezza minima uguale per tutte le card */
+            position: relative;
         }
 
         .card:hover {
@@ -307,26 +309,45 @@
         .card .card-desc {
             font-size: 0.9rem;
             color: var(--text-muted);
-            margin-bottom: 1.5rem;
+            margin-bottom: 4rem; /* Spazio sul fondo per non sovrapporsi al pulsante */
             flex-grow: 1;
         }
 
+        /* TRASFORMAZIONE IN PULSANTI COMPATTI E ANCORATI SUL FONDO */
         .card-link {
-            display: inline-flex;
+            position: absolute;
+            bottom: 2rem;
+            left: 2rem;
+            right: 2rem;
+            display: flex;
             align-items: center;
-            gap: 5px;
-            margin-top: auto;
+            justify-content: center;
+            gap: 8px;
             font-size: 0.85rem;
             font-weight: 600;
             text-decoration: none;
-            transition: opacity 0.2s;
+            padding: 0.6rem 1rem;
+            border-radius: 8px;
+            transition: all 0.2s ease-in-out;
+            text-align: center;
+            border: 1px solid transparent;
         }
-        .c-1 .card-link { color: var(--c-blue); }
-        .c-2 .card-link { color: var(--c-orange); }
-        .c-3 .card-link { color: var(--c-green); }
-        .c-4 .card-link { color: var(--c-purple); }
-        .c-5 .card-link { color: var(--c-red); }
-        .card-link:hover { text-decoration: underline; }
+
+        /* Varianti di colore dei pulsanti in base all'area */
+        .c-1 .card-link { background: rgba(58, 134, 240, 0.08); color: var(--c-blue); border-color: rgba(58, 134, 240, 0.15); }
+        .c-1 .card-link:hover { background: var(--c-blue); color: #fff; }
+
+        .c-2 .card-link { background: rgba(255, 183, 3, 0.08); color: #d97706; border-color: rgba(255, 183, 3, 0.2); }
+        .c-2 .card-link:hover { background: #d97706; color: #fff; }
+
+        .c-3 .card-link { background: rgba(6, 214, 160, 0.08); color: #059669; border-color: rgba(6, 214, 160, 0.2); }
+        .c-3 .card-link:hover { background: #059669; color: #fff; }
+
+        .c-4 .card-link { background: rgba(114, 9, 183, 0.08); color: var(--c-purple); border-color: rgba(114, 9, 183, 0.15); }
+        .c-4 .card-link:hover { background: var(--c-purple); color: #fff; }
+
+        .c-5 .card-link { background: rgba(239, 71, 111, 0.08); color: var(--c-red); border-color: rgba(239, 71, 111, 0.15); }
+        .c-5 .card-link:hover { background: var(--c-red); color: #fff; }
 
         /* Card CTA Finale */
         .card-cta {
@@ -339,18 +360,20 @@
             align-items: center;
             justify-content: center;
             text-align: center;
+            min-height: 380px;
         }
 
         .card-cta h3 { color: var(--white) !important; font-size: 1.5rem; margin-bottom: 0.5rem; }
-        .card-cta p { font-size: 0.85rem; opacity: 0.8; margin-bottom: 1.5rem; }
+        .card-cta p { font-size: 0.85rem; opacity: 0.8; margin-bottom: 2.5rem; }
         .btn-cta-white {
             background: var(--white);
             color: #1e3a8a;
             padding: 0.6rem 2rem;
-            border-radius: 50px;
+            border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
             font-size: 0.9rem;
+            width: 100%;
         }
 
         /* STILI SPECIFICI PER LE INFOGRAFICHE INLINE */
@@ -451,6 +474,7 @@
             .metodo-grid { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
             .mkt-flow { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
             .flow-step:not(:last-child)::after { display: none; }
+            .card { min-height: 400px; }
         }
 
         @media (max-width: 768px) {
@@ -458,6 +482,7 @@
             .metodo-grid, .expertise-grid, .mkt-grid, .eng-grid, .mkt-flow { grid-template-columns: 1fr; }
             .footer-details { flex-direction: column; gap: 1rem; }
             .marketing-infographic, .energy-infographic { padding: 2rem 1rem; }
+            .card { min-height: auto; padding-bottom: 5rem; }
         }
     </style>
 </head>
@@ -485,7 +510,7 @@
     <section class="section-wrap">
         <div class="sec-header">
             <h2>La Visione d'Insieme</h2>
-            <p>A differenza dei consulenti generici, integriamo ogni aspect della tua quotidianità per creare un ecosistema di soluzioni coerenti.</p>
+            <p>A differenza dei consulenti generici, integriamo ogni aspetto della tua quotidianità per creare un ecosistema di soluzioni coerenti.</p>
         </div>
         
         <div class="vision-grid">
@@ -505,7 +530,7 @@
     <section class="section-wrap">
         <div class="sec-header">
             <h2>Il Nostro Metodo</h2>
-            <p>Non vendiamo prodotti, costruiamo soluzioni in 5 fases fondamentali.</p>
+            <p>Non vendiamo prodotti, costruiamo soluzioni in 5 fasi fondamentali.</p>
         </div>
         
         <div class="metodo-grid">
@@ -524,40 +549,40 @@
         </div>
         
         <div class="expertise-grid">
-            <!-- 01 -> Link Interno Ancora -->
+            <!-- 01 -> Pulsante Espandi -->
             <div class="card c-1">
                 <h3>01. Strategia e Marketing</h3>
                 <div class="card-sub">Per imprese e professionisti</div>
                 <div class="card-desc">Sviluppiamo la tua presenza sul mercato con strategie efficaci, posizionamento chiaro e strumenti di marketing su misura per il tuo settore.</div>
-                <a href="#dettaglio-marketing" class="card-link">Espandi Dettagli ↓</a>
+                <a href="#dettaglio-marketing" class="card-link"><i class="fa-solid fa-angles-down"></i> Espandi Dettagli</a>
             </div>
-            <!-- 02 -> Link Esterno -->
+            <!-- 02 -> Pulsante Vai al Sito -->
             <div class="card c-2">
                 <h3>02. Protezione e Assicurazioni</h3>
                 <div class="card-sub">Per persone e attività</div>
                 <div class="card-desc">Analizziamo i tuoi rischi reali e costruiamo una copertura assicurativa che protegge ciò che conta davvero, senza sprechi.</div>
-                <a href="https://giokrilife-bit.github.io/impresa/" class="card-link" target="_blank">Scopri di più →</a>
+                <a href="https://giokrilife-bit.github.io/impresa/" class="card-link" target="_blank">Scopri di più <i class="fa-solid fa-arrow-right"></i></a>
             </div>
-            <!-- 03 -> Link Esterno -->
+            <!-- 03 -> Pulsante Vai al Sito -->
             <div class="card c-3">
                 <h3>03. Welfare e Benessere</h3>
                 <div class="card-sub">Per dipendenti e famiglie</div>
                 <div class="card-desc">Soluzioni di welfare aziendale che migliorano la qualità della vita quotidiana e valorizzano le persone nelle organizzazioni.</div>
-                <a href="https://giokrilife-bit.github.io/protezione-famiglia/" class="card-link" target="_blank">Scopri di più →</a>
+                <a href="https://giokrilife-bit.github.io/protezione-famiglia/" class="card-link" target="_blank">Scopri di più <i class="fa-solid fa-arrow-right"></i></a>
             </div>
-            <!-- 04 -> Link Interno Ancora -->
+            <!-- 04 -> Pulsante Espandi -->
             <div class="card c-4">
                 <h3>04. Energia ed Efficienza</h3>
                 <div class="card-sub">Per ridurre sprechi e costi</div>
                 <div class="card-desc">Ottimizziamo i consumi energetici, identificando le soluzioni più convenienti per ridurre le spese in bolletta.</div>
-                <a href="#dettaglio-energia" class="card-link">Espandi Dettagli ↓</a>
+                <a href="#dettaglio-energia" class="card-link"><i class="fa-solid fa-angles-down"></i> Espandi Dettagli</a>
             </div>
-            <!-- 05 -> Link Esterno -->
+            <!-- 05 -> Pulsante Vai al Sito -->
             <div class="card c-5">
                 <h3>05. Comunità e Condomini</h3>
                 <div class="card-sub">Per i contesti abitativi</div>
                 <div class="card-desc">Supportiamo la gestione e la valorizzazione degli immobili promuovendo una migliore qualità della vita condivisa.</div>
-                <a href="https://giokrilife-bit.github.io/benesserecontesto/" class="card-link" target="_blank">Scopri di più →</a>
+                <a href="https://giokrilife-bit.github.io/benesserecontesto/" class="card-link" target="_blank">Scopri di più <i class="fa-solid fa-arrow-right"></i></a>
             </div>
             <!-- CTA Card -->
             <div class="card-cta">
