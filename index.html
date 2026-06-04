@@ -111,7 +111,7 @@
             background: rgba(255, 255, 255, 0.1);
         }
 
-        /* 2. COUNTER SECTION (I numeri chiave) */
+        /* 2. COUNTER SECTION */
         .counters-container {
             max-width: 1100px;
             margin: -4rem auto 5rem auto;
@@ -321,8 +321,10 @@
             text-decoration: none;
             transition: opacity 0.2s;
         }
+        .c-1 .card-link { color: var(--c-blue); }
         .c-2 .card-link { color: var(--c-orange); }
         .c-3 .card-link { color: var(--c-green); }
+        .c-4 .card-link { color: var(--c-purple); }
         .c-5 .card-link { color: var(--c-red); }
         .card-link:hover { text-decoration: underline; }
 
@@ -351,19 +353,81 @@
             font-size: 0.9rem;
         }
 
+        /* STILI SPECIFICI PER LE INFOGRAFICHE INLINE */
+        .marketing-infographic, .energy-infographic {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+            margin-top: 4rem;
+            scroll-margin-top: 2rem;
+        }
+
+        .mkt-header, .eng-header { text-align: center; max-width: 750px; margin: 0 auto 3.5rem auto; }
+        
+        .mkt-badge, .eng-badge {
+            font-size: 0.8rem; font-weight: 700; padding: 0.4rem 1.2rem; border-radius: 50px;
+            display: inline-flex; align-items: center; gap: 6px; margin-bottom: 1rem; text-transform: uppercase;
+        }
+        .mkt-badge { background: rgba(37, 99, 235, 0.1); color: #2563eb; }
+        .eng-badge { background: rgba(14, 165, 233, 0.1); color: #0ea5e9; }
+
+        .mkt-header h2, .eng-header h2 { font-size: 2rem; color: #0f172a; margin-bottom: 1rem; font-weight: 700; }
+        .mkt-header p, .eng-header p { color: #64748b; font-size: 1rem; }
+
+        .mkt-grid, .eng-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 4rem; }
+        .mkt-card, .eng-card { background: #f8fafc; border-radius: 16px; padding: 2rem; border: 1px solid #e2e8f0; transition: all 0.3s ease; }
+        .mkt-card:hover, .eng-card:hover { transform: translateY(-5px); background: #ffffff; box-shadow: 0 15px 30px rgba(0,0,0,0.05); border-color: #cbd5e1; }
+
+        .font-ai-highlight { background: linear-gradient(180deg, #f8fafc 0%, rgba(114, 9, 183, 0.03) 100%); border: 1px solid rgba(114, 9, 183, 0.15); }
+        .font-ai-highlight:hover { border-color: #7209b7; }
+        .font-purple-highlight { background: linear-gradient(180deg, #f8fafc 0%, rgba(114, 9, 183, 0.02) 100%); border: 1px solid rgba(114, 9, 183, 0.12); }
+        .font-purple-highlight:hover { border-color: #7209b7; }
+
+        .mkt-icon-wrap, .eng-icon-wrap { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1.5rem; }
+        .mkt-icon-wrap.c-blue, .eng-icon-wrap.c-blue { background: rgba(58, 134, 240, 0.1); color: #3a86f0; }
+        .mkt-icon-wrap.c-orange { background: rgba(255, 183, 3, 0.1); color: #ffb703; }
+        .mkt-icon-wrap.c-purple, .eng-icon-wrap.c-purple { background: rgba(114, 9, 183, 0.1); color: #7209b7; }
+        .eng-icon-wrap.c-green { background: rgba(6, 214, 160, 0.1); color: #06d6a0; }
+
+        .mkt-card h3, .eng-card h3 { font-size: 1.15rem; color: #0f172a; margin-bottom: 0.8rem; font-weight: 600; }
+        .mkt-card p, .eng-card p { font-size: 0.88rem; color: #64748b; line-height: 1.6; margin-bottom: 1.5rem; }
+
+        .mkt-list, .eng-list { list-style: none; }
+        .mkt-list li, .eng-list li { font-size: 0.82rem; color: #334155; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 8px; font-weight: 500; }
+        .text-blue { color: #3a86f0; }
+        .text-orange { color: #ffb703; }
+        .text-purple { color: #7209b7; }
+        .text-green { color: #06d6a0; }
+
+        /* Timeline Flusso Strategico */
+        .mkt-flow-container, .eng-comparison-container { border-top: 1px solid #e2e8f0; padding-top: 3rem; }
+        .flow-title, .comparison-title { text-align: center; font-size: 1.1rem; color: #0f172a; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2.5rem; }
+        .mkt-flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; position: relative; }
+        .flow-step { text-align: center; position: relative; }
+        .flow-step:not(:last-child)::after { content: ''; position: absolute; top: 20px; left: 60%; width: 80%; height: 2px; background: #e2e8f0; z-index: 1; }
+        .flow-circle { width: 42px; height: 42px; background: #1e3a8a; color: #ffffff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; margin: 0 auto 1rem auto; position: relative; z-index: 2; box-shadow: 0 4px 10px rgba(30, 58, 138, 0.2); }
+        .flow-step h5 { font-size: 0.95rem; color: #0f172a; margin-bottom: 0.4rem; font-weight: 600; }
+        .flow-step p { font-size: 0.8rem; color: #64748b; line-height: 1.4; padding: 0 10px; }
+
+        /* Tabella Comparativa */
+        .eng-table-wrapper { overflow-x: auto; }
+        .eng-compare-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem; }
+        .eng-compare-table th { background: #f1f5f9; color: #1e293b; padding: 1rem; font-weight: 600; border-bottom: 2px solid #e2e8f0; }
+        .eng-compare-table td { padding: 1.2rem 1rem; border-bottom: 1px solid #edf2f7; color: #475569; vertical-align: top; }
+        .eng-compare-table tbody tr:hover { background: #f8fafc; }
+        .eng-compare-table td:nth-child(3) { color: #059669; font-weight: 500; background: rgba(6, 214, 160, 0.02); }
+
         /* 6. FOOTER CONVERSAZIONE */
         .footer-conv {
             background: #0f172a;
             color: var(--white);
             padding: 4rem 2rem;
             text-align: center;
+            margin-top: 6rem;
         }
 
-        .footer-inner {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
+        .footer-inner { max-width: 700px; margin: 0 auto; }
         .footer-inner h3 { font-size: 1.8rem; margin-bottom: 1rem; }
         .footer-inner p { color: #94a3b8; font-size: 0.95rem; margin-bottom: 2.5rem; }
         
@@ -382,16 +446,18 @@
 
         /* RESPONSIVE */
         @media (max-width: 992px) {
-            .expertise-grid { grid-template-columns: repeat(2, 1fr); }
+            .expertise-grid, .mkt-grid, .eng-grid { grid-template-columns: repeat(2, 1fr); }
             .vision-grid { grid-template-columns: 1fr; }
             .metodo-grid { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+            .mkt-flow { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+            .flow-step:not(:last-child)::after { display: none; }
         }
 
         @media (max-width: 768px) {
             .counters-container { grid-template-columns: 1fr; margin-top: -2rem; }
-            .metodo-grid { grid-template-columns: 1fr; }
-            .expertise-grid { grid-template-columns: 1fr; }
+            .metodo-grid, .expertise-grid, .mkt-grid, .eng-grid, .mkt-flow { grid-template-columns: 1fr; }
             .footer-details { flex-direction: column; gap: 1rem; }
+            .marketing-infographic, .energy-infographic { padding: 2rem 1rem; }
         }
     </style>
 </head>
@@ -419,19 +485,17 @@
     <section class="section-wrap">
         <div class="sec-header">
             <h2>La Visione d'Insieme</h2>
-            <p>A differenza dei consulenti generici, integriamo ogni aspetto della tua quotidianità per creare un ecosistema di soluzioni coerenti.</p>
+            <p>A differenza dei consulenti generici, integriamo ogni aspect della tua quotidianità per creare un ecosistema di soluzioni coerenti.</p>
         </div>
         
         <div class="vision-grid">
             <div class="chart-box">
-                <!-- Grafico Radar Poligonale Interattivo -->
                 <canvas id="radarChart" style="max-height: 280px;"></canvas>
                 <p class="caption">Rappresentazione della copertura sinergica fornita dal nostro HUB.</p>
             </div>
             <div class="vision-text">
                 <h3>Perché l'approccio integrato?</h3>
                 <p>Molto spesso le esigenze assicurative confliggono con quelle energetiche, o il welfare aziendale non è allineato alla strategia di marketing. GiOKri Life elimina queste frizioni agendo come un <strong>unico punto di riferimento</strong>.</p>
-                <!-- Grafico a barre orizzontali -->
                 <canvas id="barChart" style="max-height: 180px;"></canvas>
             </div>
         </div>
@@ -441,7 +505,7 @@
     <section class="section-wrap">
         <div class="sec-header">
             <h2>Il Nostro Metodo</h2>
-            <p>Non vendiamo prodotti, costruiamo soluzioni in 5 fasi fondamentali.</p>
+            <p>Non vendiamo prodotti, costruiamo soluzioni in 5 fases fondamentali.</p>
         </div>
         
         <div class="metodo-grid">
@@ -460,38 +524,40 @@
         </div>
         
         <div class="expertise-grid">
-            <!-- 01 -->
+            <!-- 01 -> Link Interno Ancora -->
             <div class="card c-1">
                 <h3>01. Strategia e Marketing</h3>
                 <div class="card-sub">Per imprese e professionisti</div>
                 <div class="card-desc">Sviluppiamo la tua presenza sul mercato con strategie efficaci, posizionamento chiaro e strumenti di marketing su misura per il tuo settore.</div>
+                <a href="#dettaglio-marketing" class="card-link">Espandi Dettagli ↓</a>
             </div>
-            <!-- 02 -> Link a Impresa -->
+            <!-- 02 -> Link Esterno -->
             <div class="card c-2">
                 <h3>02. Protezione e Assicurazioni</h3>
                 <div class="card-sub">Per persone e attività</div>
                 <div class="card-desc">Analizziamo i tuoi rischi reali e costruiamo una copertura assicurativa che protegge ciò che conta davvero, senza sprechi.</div>
-                <a href="https://giokrilife-bit.github.io/impresa/" class="card-link">Scopri di più →</a>
+                <a href="https://giokrilife-bit.github.io/impresa/" class="card-link" target="_blank">Scopri di più →</a>
             </div>
-            <!-- 03 -> Link a Protezione Famiglia -->
+            <!-- 03 -> Link Esterno -->
             <div class="card c-3">
                 <h3>03. Welfare e Benessere</h3>
                 <div class="card-sub">Per dipendenti e famiglie</div>
                 <div class="card-desc">Soluzioni di welfare aziendale che migliorano la qualità della vita quotidiana e valorizzano le persone nelle organizzazioni.</div>
-                <a href="https://giokrilife-bit.github.io/protezione-famiglia/" class="card-link">Scopri di più →</a>
+                <a href="https://giokrilife-bit.github.io/protezione-famiglia/" class="card-link" target="_blank">Scopri di più →</a>
             </div>
-            <!-- 04 -->
+            <!-- 04 -> Link Interno Ancora -->
             <div class="card c-4">
                 <h3>04. Energia ed Efficienza</h3>
                 <div class="card-sub">Per ridurre sprechi e costi</div>
                 <div class="card-desc">Ottimizziamo i consumi energetici, identificando le soluzioni più convenienti per ridurre le spese in bolletta.</div>
+                <a href="#dettaglio-energia" class="card-link">Espandi Dettagli ↓</a>
             </div>
-            <!-- 05 -> Link a Benessere Contesto -->
+            <!-- 05 -> Link Esterno -->
             <div class="card c-5">
                 <h3>05. Comunità e Condomini</h3>
                 <div class="card-sub">Per i contesti abitativi</div>
                 <div class="card-desc">Supportiamo la gestione e la valorizzazione degli immobili promuovendo una migliore qualità della vita condivisa.</div>
-                <a href="https://giokrilife-bit.github.io/benesserecontesto/" class="card-link">Scopri di più →</a>
+                <a href="https://giokrilife-bit.github.io/benesserecontesto/" class="card-link" target="_blank">Scopri di più →</a>
             </div>
             <!-- CTA Card -->
             <div class="card-cta">
@@ -500,14 +566,90 @@
                 <a href="mailto:giokrilife@gmail.com" class="btn-cta-white">Contattaci</a>
             </div>
         </div>
+
+        <!-- INFOGRAFICA ESPANSA AREA 01 -->
+        <div id="dettaglio-marketing" class="marketing-infographic">
+            <div class="mkt-header">
+                <span class="mkt-badge"><i class="fa-solid fa-brain"></i> Marketing & Innovation</span>
+                <h2>01. Focus: Strategia e Marketing Aumentato</h2>
+                <p>Uniamo la visione strategica aziendale tradizionale alle potenzialità dell'<strong>Intelligenza Artificiale</strong> per farti scalare il mercato.</p>
+            </div>
+            <div class="mkt-grid">
+                <div class="mkt-card">
+                    <div class="mkt-icon-wrap c-blue"><i class="fa-solid fa-crosshairs"></i></div>
+                    <h3>Posizionamento di Precisione</h3>
+                    <p>Sfruttiamo l'<strong>AI predittiva</strong> per analizzare i trend di mercato del tuo settore, anticipando la concorrenza e definendo il tuo cliente ideale senza errori.</p>
+                </div>
+                <div class="mkt-card">
+                    <div class="mkt-icon-wrap c-orange"><i class="fa-solid fa-rocket"></i></div>
+                    <h3>Strategie di Go-to-Market</h3>
+                    <p>Sviluppiamo l'architettura dei tuoi funnel di vendita, piani editoriali mirati e copywriting persuasivo studiato per convertire i contatti in clienti.</p>
+                </div>
+                <div class="mkt-card font-ai-highlight">
+                    <div class="mkt-icon-wrap c-purple"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                    <h3>Innovazione dei Processi con AI</h3>
+                    <p>Integrazione di strumenti di <strong>AI Generativa e Automation</strong> nei flussi lavorativi aziendali quotidiani per abbattere i costi e ottimizzare i tempi operativi.</p>
+                </div>
+            </div>
+            <div class="mkt-flow-container">
+                <h4 class="flow-title">Il Flusso Operativo in 4 Step</h4>
+                <div class="mkt-flow">
+                    <div class="flow-step"><div class="flow-circle">1</div><h5>Audit Dedicato</h5><p>Mappatura dello stato attuale.</p></div>
+                    <div class="flow-step"><div class="flow-circle">2</div><h5>AI Setup</h5><p>Configurazione dei modelli AI di business.</p></div>
+                    <div class="flow-step"><div class="flow-circle">3</div><h5>Lancio & Tuning</h5><p>Attivazione e ottimizzazione dati.</p></div>
+                    <div class="flow-step"><div class="flow-circle">4</div><h5>Scalabilità</h5><p>Automazione per la crescita continua.</p></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- INFOGRAFICA ESPANSA AREA 04 -->
+        <div id="dettaglio-energia" class="energy-infographic">
+            <div class="eng-header">
+                <span class="eng-badge"><i class="fa-solid fa-bolt"></i> Cost Optimization</span>
+                <h2>04. Focus: Energia ed Efficienza Analitica</h2>
+                <p>Nessun cambio fornitore al buio: effettuiamo un'analisi scientifica e matematica basata sui tuoi reali profili di consumo orario.</p>
+            </div>
+            <div class="eng-grid">
+                <div class="eng-card">
+                    <div class="eng-icon-wrap c-blue"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                    <h3>Audit e Diagnosi dei Costi</h3>
+                    <p>Analisi millimetrica delle componenti fisse, delle quote di trasporto e delle penali nascoste per scovare ogni singola inefficienza in fattura.</p>
+                </div>
+                <div class="eng-card">
+                    <div class="eng-icon-wrap c-green"><i class="fa-solid fa-scale-balanced"></i></div>
+                    <h3>Sourcing e Negoziazione</h3>
+                    <p>Confrontiamo le curve di carico con i parametri PUN/PSV dei mercati all'ingrosso per negoziare tariffe dedicate e contratti privi di sorprese.</p>
+                </div>
+                <div class="eng-card font-purple-highlight">
+                    <div class="eng-icon-wrap c-purple"><i class="fa-solid fa-chart-line"></i></div>
+                    <h3>Monitoraggio e Scalabilità</h3>
+                    <p>Il mercato energetico fluttua. Monitoriamo costantemente gli indici pronti a rinegoziare i contratti non appena si presentano nuove opportunità.</p>
+                </div>
+            </div>
+            <div class="eng-comparison-container">
+                <h4 class="comparison-title">L'impatto del nostro intervento analitico</h4>
+                <div class="eng-table-wrapper">
+                    <table class="eng-compare-table">
+                        <thead>
+                            <tr><th>Voce di Analisi</th><th>Prima del nostro Audit</th><th>Dopo l'Ottimizzazione GiOKri</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>Prezzo Materia Prima</strong></td><td>Tariffe fuori mercato con spread nascosti.</td><td>Prezzo ancorato ai valori reali dei mercati all'ingrosso.</td></tr>
+                            <tr><td><strong>Fasce di Consumo</strong></td><td>Carichi concentrati nelle fasce costose senza controllo.</td><td>Spostamento intelligente o scelta della tariffa flat idonea.</td></tr>
+                            <tr><td><strong>Costi Fissi e Penali</strong></td><td>Penali invisibili ed errori di potenza impegnata.</td><td>Azzeramento anomalie e dimensionamento perfetto.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
     </section>
 
-    <!-- 6. FOOTER INIZIAMO UNA CONVERSAZIONE -->
+    <!-- 6. FOOTER -->
     <footer class="footer-conv">
         <div class="footer-inner">
             <h3>Iniziamo una conversazione</h3>
             <p>Raccontaci la tua situazione. Valutiamo insieme come GiOKri Life può supportarti — senza impegno e senza fretta.</p>
-            
             <div class="footer-details">
                 <a href="tel:+393271160053"><i class="fa-solid fa-phone"></i> +39 327 1160053</a>
                 <a href="mailto:giokrilife@gmail.com"><i class="fa-solid fa-envelope"></i> giokrilife@gmail.com</a>
@@ -516,9 +658,8 @@
         </div>
     </footer>
 
-    <!-- INIZIALIZZAZIONE GRAFICI IN CHART.JS (Simili alla foto originale) -->
+    <!-- INIZIALIZZAZIONE GRAFICI IN CHART.JS -->
     <script>
-        // 1. Grafico Radar Poligonale
         const ctxRadar = document.getElementById('radarChart').getContext('2d');
         new Chart(ctxRadar, {
             type: 'radar',
@@ -538,7 +679,6 @@
             }
         });
 
-        // 2. Grafico a Barre Orizzontali
         const ctxBar = document.getElementById('barChart').getContext('2d');
         new Chart(ctxBar, {
             type: 'bar',
