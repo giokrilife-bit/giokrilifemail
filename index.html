@@ -3,23 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GiOKri Life - Le 5 Aree di Expertise</title>
+    <title>GiOKri Life - Un supporto concreto per ogni area della tua vita</title>
+    <!-- FontAwesome per le icone -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chart.js per i grafici interattivi -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <style>
         :root {
-            --primary-dark: #1d3557;
-            --blue-card: #3a86f0;
-            --orange-card: #ffb703;
-            --green-card: #06d6a0;
-            --purple-card: #7209b7;
-            --red-card: #ef476f;
-            --bg-main: #f8fafd;
-            --text-muted: #6c757d;
-            --text-sub: #8ecae6;
+            --primary: #1e3a8a;
+            --primary-gradient: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            --bg-main: #f8fafc;
+            --white: #ffffff;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            
+            /* Colori identificativi delle card */
+            --c-blue: #3a86f0;
+            --c-orange: #ffb703;
+            --c-green: #06d6a0;
+            --c-purple: #7209b7;
+            --c-red: #ef476f;
         }
 
         * {
@@ -31,216 +39,523 @@
 
         body {
             background-color: var(--bg-main);
-            color: var(--primary-dark);
-            padding: 4rem 2rem;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* 1. HERO SECTION */
+        .hero {
+            background: var(--primary-gradient);
+            color: var(--white);
+            text-align: center;
+            padding: 5rem 2rem 8rem 2rem;
+            position: relative;
+        }
+
+        .brand-badge {
+            background: #facc15;
+            color: #1e3a8a;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            max-width: 800px;
+            margin: 0 auto 1.5rem auto;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            max-width: 650px;
+            margin: 0 auto 2.5rem auto;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .hero-btns {
             display: flex;
-            flex-direction: column;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .btn-white {
+            background: var(--white);
+            color: var(--primary);
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--white);
+            color: var(--white);
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* 2. COUNTER SECTION (I numeri chiave) */
+        .counters-container {
+            max-width: 1100px;
+            margin: -4rem auto 5rem auto;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .counter-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+        }
+
+        .counter-card .num {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: block;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .counter-card .label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        /* 3. SEZIONE VISIONE D'INSIEME & GRAFICI */
+        .section-wrap {
+            max-width: 1100px;
+            margin: 0 auto 5rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .sec-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .sec-header h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1a2a3a;
+            margin-bottom: 0.5rem;
+        }
+
+        .sec-header p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-style: italic;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .vision-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
             align-items: center;
         }
 
-        h1.main-title {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 3.5rem;
+        .chart-box {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
             text-align: center;
-            color: #1a2a3a;
         }
 
-        /* Griglia principale a 3 colonne */
-        .grid-container {
-            max-width: 1200px;
-            width: 100%;
+        .chart-box p.caption {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 1rem;
+        }
+
+        .vision-text h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .vision-text p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* 4. SEZIONE IL NOSTRO METODO */
+        .metodo-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .metodo-step {
+            background: #e0f2fe;
+            border-radius: 12px;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .metodo-step.step-5 {
+            background: #fef3c7;
+            border: 1px solid #fcd34d;
+        }
+
+        .step-num {
+            width: 30px;
+            height: 30px;
+            background: #2563eb;
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin: 0 auto 1rem auto;
+        }
+
+        .metodo-step.step-5 .step-num {
+            background: #d97706;
+        }
+
+        .metodo-step h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .metodo-step p {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* 5. SEZIONE LE 5 AREE DI EXPERTISE */
+        .expertise-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
+            margin-top: 2.5rem;
         }
 
-        /* Card Base */
         .card {
-            background: #ffffff;
-            border-radius: 24px;
+            background: var(--white);
+            border-radius: 20px;
             padding: 2.5rem 2rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.02);
             display: flex;
             flex-direction: column;
-            position: relative;
             border-top: 4px solid transparent;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.06);
         }
 
-        /* Colori dei bordi delle singole card come da foto */
-        .c-1 { border-top-color: var(--blue-card); }
-        .c-2 { border-top-color: var(--orange-card); }
-        .c-3 { border-top-color: var(--green-card); }
-        .c-4 { border-top-color: var(--purple-card); }
-        .c-5 { border-top-color: var(--red-card); }
+        .c-1 { border-top-color: var(--c-blue); }
+        .c-2 { border-top-color: var(--c-orange); }
+        .c-3 { border-top-color: var(--c-green); }
+        .c-4 { border-top-color: var(--c-purple); }
+        .c-5 { border-top-color: var(--c-red); }
 
-        /* Numerazione e Titoli */
-        .card h2 {
-            font-size: 1.15rem;
-            font-weight: 700;
-            margin-bottom: 0.3rem;
-        }
+        .card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.3rem; }
+        .c-1 h3 { color: var(--c-blue); }
+        .c-2 h3 { color: var(--c-orange); }
+        .c-3 h3 { color: var(--c-green); }
+        .c-4 h3 { color: var(--c-purple); }
+        .c-5 h3 { color: var(--c-red); }
 
-        .c-1 h2 { color: var(--blue-card); }
-        .c-2 h2 { color: var(--orange-card); }
-        .c-3 h2 { color: var(--green-card); }
-        .c-4 h2 { color: var(--purple-card); }
-        .c-5 h2 { color: var(--red-card); }
-
-        .subtitle {
-            font-size: 0.8rem;
+        .card .card-sub {
+            font-size: 0.75rem;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #a0aec0;
-            margin-bottom: 1.5rem;
+            color: #94a3b8;
+            letter-spacing: 0.5px;
+            margin-bottom: 1.2rem;
         }
 
-        .description {
-            font-size: 0.95rem;
+        .card .card-desc {
+            font-size: 0.9rem;
             color: var(--text-muted);
-            line-height: 1.6;
             margin-bottom: 1.5rem;
             flex-grow: 1;
         }
 
-        /* Pulsante Link Integrato nelle Card */
         .card-link {
-            display: inline-block;
-            text-align: center;
-            padding: 0.6rem 1rem;
-            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: auto;
             font-size: 0.85rem;
             font-weight: 600;
             text-decoration: none;
-            transition: all 0.2s ease;
-            margin-top: auto;
+            transition: opacity 0.2s;
         }
+        .c-2 .card-link { color: var(--c-orange); }
+        .c-3 .card-link { color: var(--c-green); }
+        .c-5 .card-link { color: var(--c-red); }
+        .card-link:hover { text-decoration: underline; }
 
-        .c-2 .card-link { background: rgba(255, 183, 3, 0.1); color: #d49200; }
-        .c-2 .card-link:hover { background: var(--orange-card); color: #fff; }
-
-        .c-3 .card-link { background: rgba(6, 214, 160, 0.1); color: #049f76; }
-        .c-3 .card-link:hover { background: var(--green-card); color: #fff; }
-
-        .c-5 .card-link { background: rgba(239, 71, 111, 0.1); color: #d6284f; }
-        .c-5 .card-link:hover { background: var(--red-card); color: #fff; }
-
-
-        /* Card Finale: Pronto a Iniziare */
+        /* Card CTA Finale */
         .card-cta {
             background: #1e3a8a;
-            border-radius: 24px;
+            color: var(--white);
+            border-radius: 20px;
             padding: 2.5rem 2rem;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            color: #ffffff;
-            box-shadow: 0 10px 30px rgba(30, 58, 138, 0.2);
         }
 
-        .card-cta h3 {
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .card-cta p {
-            font-size: 0.9rem;
-            opacity: 0.85;
-            margin-bottom: 1.5rem;
-        }
-
-        .btn-contact {
-            background: #ffffff;
+        .card-cta h3 { color: var(--white) !important; font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .card-cta p { font-size: 0.85rem; opacity: 0.8; margin-bottom: 1.5rem; }
+        .btn-cta-white {
+            background: var(--white);
             color: #1e3a8a;
-            padding: 0.7rem 2rem;
+            padding: 0.6rem 2rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.95rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            transition: transform 0.2s;
+            font-size: 0.9rem;
         }
 
-        .btn-contact:hover {
-            transform: scale(1.05);
+        /* 6. FOOTER CONVERSAZIONE */
+        .footer-conv {
+            background: #0f172a;
+            color: var(--white);
+            padding: 4rem 2rem;
+            text-align: center;
         }
 
-        /* Responsive Design */
+        .footer-inner {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .footer-inner h3 { font-size: 1.8rem; margin-bottom: 1rem; }
+        .footer-inner p { color: #94a3b8; font-size: 0.95rem; margin-bottom: 2.5rem; }
+        
+        .footer-details {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+            border-top: 1px solid #1e293b;
+            padding-top: 2rem;
+        }
+
+        .footer-details a { color: var(--white); text-decoration: none; }
+        .footer-details i { color: #facc15; margin-right: 6px; }
+
+        /* RESPONSIVE */
         @media (max-width: 992px) {
-            .grid-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
+            .expertise-grid { grid-template-columns: repeat(2, 1fr); }
+            .vision-grid { grid-template-columns: 1fr; }
+            .metodo-grid { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
         }
 
-        @media (max-width: 650px) {
-            body { padding: 2rem 1rem; }
-            h1.main-title { font-size: 1.8rem; margin-bottom: 2.5rem; }
-            .grid-container { grid-template-columns: 1fr; }
+        @media (max-width: 768px) {
+            .counters-container { grid-template-columns: 1fr; margin-top: -2rem; }
+            .metodo-grid { grid-template-columns: 1fr; }
+            .expertise-grid { grid-template-columns: 1fr; }
+            .footer-details { flex-direction: column; gap: 1rem; }
         }
     </style>
 </head>
 <body>
 
-    <h1 class="main-title">Le 5 Aree di Expertise</h1>
-
-    <div class="grid-container">
-
-        <!-- 01. STRATEGIA E MARKETING -->
-        <div class="card c-1">
-            <h2>01. Strategia e Marketing</h2>
-            <div class="subtitle">Per imprese e professionisti</div>
-            <div class="description">Sviluppiamo la tua presenza sul mercato con strategie efficaci, posizionamento chiaro e strumenti di marketing su misura per il tuo settore.</div>
+    <!-- 1. HERO -->
+    <section class="hero">
+        <div class="brand-badge">GiOKri Life</div>
+        <h1>Un supporto concreto per ogni area della tua vita</h1>
+        <p>Affianchiamo persone, famiglie e imprese attraverso un approccio integrato a 360° che garantisce crescita e serenità.</p>
+        <div class="hero-btns">
+            <a href="#aree" class="btn-white">Scopri le aree</a>
+            <a href="mailto:giokrilife@gmail.com" class="btn-outline">Contattaci</a>
         </div>
+    </section>
 
-        <!-- 02. PROTEZIONE E ASSICURAZIONI (Link Impresa) -->
-        <div class="card c-2">
-            <h2>02. Protezione e Assicurazioni</h2>
-            <div class="subtitle">Per persone e attività</div>
-            <div class="description">Analizziamo i tuoi rischi reali e costruiamo una copertura assicurativa che protegge ciò che conta davvero, senza sprechi.</div>
-            <a href="https://giokrilife-bit.github.io/impresa/" class="card-link">Esplora Soluzioni Impresa →</a>
-        </div>
-
-        <!-- 03. WELFARE E BENESSERE (Link Famiglia) -->
-        <div class="card c-3">
-            <h2>03. Welfare e Benessere</h2>
-            <div class="subtitle">Per dipendenti e famiglie</div>
-            <div class="description">Soluzioni di welfare aziendale che migliorano la qualità della vita quotidiana e valorizzano le persone nelle organizzazioni.</div>
-            <a href="https://giokrilife-bit.github.io/protezione-famiglia/" class="card-link">Esplora Area Famiglia →</a>
-        </div>
-
-        <!-- 04. ENERGIA ED EFFICIENZA -->
-        <div class="card c-4">
-            <h2>04. Energia ed Efficienza</h2>
-            <div class="subtitle">Per ridurre sprechi e costi</div>
-            <div class="description">Ottimizziamo i consumi energetici, identificando le soluzioni più convenienti per ridurre le spese in bolletta.</div>
-        </div>
-
-        <!-- 05. COMUNITÀ E CONDOMINI (Link Immobili) -->
-        <div class="card c-5">
-            <h2>05. Comunità e Condomini</h2>
-            <div class="subtitle">Per i contesti abitativi</div>
-            <div class="description">Supportiamo la gestione e la valorizzazione degli immobili promuovendo una migliore qualità della vita condivisa.</div>
-            <a href="https://giokrilife-bit.github.io/benesserecontesto/" class="card-link">Esplora Gestione Immobili →</a>
-        </div>
-
-        <!-- CARD FINALE: PRONTO A INIZIARE -->
-        <div class="card-cta">
-            <h3>Pronto a iniziare?</h3>
-            <p>Valutiamo insieme come supportarti.</p>
-            <a href="mailto:giokrilife@gmail.com?subject=Contatto%20da%20Hub%20Expertise" class="btn-contact">Contattaci</a>
-        </div>
-
+    <!-- 2. COUNTERS -->
+    <div class="counters-container">
+        <div class="counter-card"><span class="num">5</span><span class="label">Aree di Expertise</span></div>
+        <div class="counter-card"><span class="num">360°</span><span class="label">Approccio Integrato</span></div>
+        <div class="counter-card"><span class="num">24h</span><span class="label">Tempi di Risposta</span></div>
     </div>
 
+    <!-- 3. VISIONE D'INSIEME -->
+    <section class="section-wrap">
+        <div class="sec-header">
+            <h2>La Visione d'Insieme</h2>
+            <p>A differenza dei consulenti generici, integriamo ogni aspetto della tua quotidianità per creare un ecosistema di soluzioni coerenti.</p>
+        </div>
+        
+        <div class="vision-grid">
+            <div class="chart-box">
+                <!-- Grafico Radar Poligonale Interattivo -->
+                <canvas id="radarChart" style="max-height: 280px;"></canvas>
+                <p class="caption">Rappresentazione della copertura sinergica fornita dal nostro HUB.</p>
+            </div>
+            <div class="vision-text">
+                <h3>Perché l'approccio integrato?</h3>
+                <p>Molto spesso le esigenze assicurative confliggono con quelle energetiche, o il welfare aziendale non è allineato alla strategia di marketing. GiOKri Life elimina queste frizioni agendo come un <strong>unico punto di riferimento</strong>.</p>
+                <!-- Grafico a barre orizzontali -->
+                <canvas id="barChart" style="max-height: 180px;"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. IL NOSTRO METODO -->
+    <section class="section-wrap">
+        <div class="sec-header">
+            <h2>Il Nostro Metodo</h2>
+            <p>Non vendiamo prodotti, costruiamo soluzioni in 5 fasi fondamentali.</p>
+        </div>
+        
+        <div class="metodo-grid">
+            <div class="metodo-step"><div class="step-num">1</div><h4>Ascolto</h4><p>Comprendiamo i bisogni reali</p></div>
+            <div class="metodo-step"><div class="step-num">2</div><h4>Analisi</h4><p>Valutiamo scenari e rischi</p></div>
+            <div class="metodo-step"><div class="step-num">3</div><h4>Soluzione</h4><p>Progetto su misura</p></div>
+            <div class="metodo-step"><div class="step-num">4</div><h4>Continuità</h4><p>Monitoraggio nel tempo</p></div>
+            <div class="metodo-step step-5"><div class="step-num">5</div><h4>Fiducia</h4><p>Rapporto trasparente</p></div>
+        </div>
+    </section>
+
+    <!-- 5. LE 5 AREE DI EXPERTISE -->
+    <section class="section-wrap" id="aree">
+        <div class="sec-header">
+            <h2>Le 5 Aree di Expertise</h2>
+        </div>
+        
+        <div class="expertise-grid">
+            <!-- 01 -->
+            <div class="card c-1">
+                <h3>01. Strategia e Marketing</h3>
+                <div class="card-sub">Per imprese e professionisti</div>
+                <div class="card-desc">Sviluppiamo la tua presenza sul mercato con strategie efficaci, posizionamento chiaro e strumenti di marketing su misura per il tuo settore.</div>
+            </div>
+            <!-- 02 -> Link a Impresa -->
+            <div class="card c-2">
+                <h3>02. Protezione e Assicurazioni</h3>
+                <div class="card-sub">Per persone e attività</div>
+                <div class="card-desc">Analizziamo i tuoi rischi reali e costruiamo una copertura assicurativa che protegge ciò che conta davvero, senza sprechi.</div>
+                <a href="https://giokrilife-bit.github.io/impresa/" class="card-link">Scopri di più →</a>
+            </div>
+            <!-- 03 -> Link a Protezione Famiglia -->
+            <div class="card c-3">
+                <h3>03. Welfare e Benessere</h3>
+                <div class="card-sub">Per dipendenti e famiglie</div>
+                <div class="card-desc">Soluzioni di welfare aziendale che migliorano la qualità della vita quotidiana e valorizzano le persone nelle organizzazioni.</div>
+                <a href="https://giokrilife-bit.github.io/protezione-famiglia/" class="card-link">Scopri di più →</a>
+            </div>
+            <!-- 04 -->
+            <div class="card c-4">
+                <h3>04. Energia ed Efficienza</h3>
+                <div class="card-sub">Per ridurre sprechi e costi</div>
+                <div class="card-desc">Ottimizziamo i consumi energetici, identificando le soluzioni più convenienti per ridurre le spese in bolletta.</div>
+            </div>
+            <!-- 05 -> Link a Benessere Contesto -->
+            <div class="card c-5">
+                <h3>05. Comunità e Condomini</h3>
+                <div class="card-sub">Per i contesti abitativi</div>
+                <div class="card-desc">Supportiamo la gestione e la valorizzazione degli immobili promuovendo una migliore qualità della vita condivisa.</div>
+                <a href="https://giokrilife-bit.github.io/benesserecontesto/" class="card-link">Scopri di più →</a>
+            </div>
+            <!-- CTA Card -->
+            <div class="card-cta">
+                <h3>Pronto a iniziare?</h3>
+                <p>Valutiamo insieme come supportarti.</p>
+                <a href="mailto:giokrilife@gmail.com" class="btn-cta-white">Contattaci</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. FOOTER INIZIAMO UNA CONVERSAZIONE -->
+    <footer class="footer-conv">
+        <div class="footer-inner">
+            <h3>Iniziamo una conversazione</h3>
+            <p>Raccontaci la tua situazione. Valutiamo insieme come GiOKri Life può supportarti — senza impegno e senza fretta.</p>
+            
+            <div class="footer-details">
+                <a href="tel:+393271160053"><i class="fa-solid fa-phone"></i> +39 327 1160053</a>
+                <a href="mailto:giokrilife@gmail.com"><i class="fa-solid fa-envelope"></i> giokrilife@gmail.com</a>
+                <a href="https://maps.google.com/?q=Giokri+Life+Spresiano" target="_blank"><i class="fa-solid fa-location-dot"></i> Spresiano (TV)</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INIZIALIZZAZIONE GRAFICI IN CHART.JS (Simili alla foto originale) -->
+    <script>
+        // 1. Grafico Radar Poligonale
+        const ctxRadar = document.getElementById('radarChart').getContext('2d');
+        new Chart(ctxRadar, {
+            type: 'radar',
+            data: {
+                labels: ['Strategia', 'Protezione', 'Welfare', 'Energia', 'Immobili'],
+                datasets: [{
+                    data: [85, 90, 75, 80, 85],
+                    backgroundColor: 'rgba(37, 99, 235, 0.15)',
+                    borderColor: '#2563eb',
+                    borderWidth: 2,
+                    pointBackgroundColor: '#2563eb'
+                }]
+            },
+            options: {
+                plugins: { legend: { display: false } },
+                scales: { r: { min: 0, max: 100, ticks: { display: false } } }
+            }
+        });
+
+        // 2. Grafico a Barre Orizzontali
+        const ctxBar = document.getElementById('barChart').getContext('2d');
+        new Chart(ctxBar, {
+            type: 'bar',
+            data: {
+                labels: ['Efficienza Costi', 'Protezione Rischi', 'Welfare Aziendale', 'Gestione Condominiale'],
+                datasets: [{
+                    data: [75, 92, 85, 60],
+                    backgroundColor: ['#3a86f0', '#06d6a0', '#ffb703', '#7209b7'],
+                    borderRadius: 5
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                plugins: { legend: { display: false } },
+                scales: { x: { max: 100, display: false }, y: { grid: { display: false } } }
+            }
+        });
+    </script>
 </body>
 </html>
